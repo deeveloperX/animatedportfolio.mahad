@@ -19,6 +19,88 @@ body{
     overflow-x: hidden;
 }
 
+
+/* --------------preloader start------------------ */
+
+.preloader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(40, 25, 65); /* Change the background color and opacity as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's on top of other elements */
+}
+.quater {
+  height: 1.5cm;
+  width: 1.5cm;
+  background-color: skyblue;
+  float: left;
+  position: relative;
+  bottom: 1.25cm;
+}
+
+.i {
+  border-top-left-radius: 100%;
+  animation: spin1 2s ease-in-out infinite;
+  transform-origin: 1.5cm 1.5cm;
+}
+
+.ii {
+  border-top-right-radius: 100%;
+  animation: spin2 2s ease-in-out infinite;
+  transform-origin: 0 1.5cm;
+}
+
+@keyframes spin1 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  25% {
+    transform: rotateZ(0deg);
+  }
+
+  50% {
+    transform: rotateZ(180deg);
+  }
+
+  75% {
+    transform: rotateZ(180deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spin2 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  25% {
+    transform: rotateZ(180deg);
+  }
+
+  50% {
+    transform: rotateZ(180deg);
+  }
+
+  75% {
+    transform: rotateZ(360deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+/* --------------preloader start------------------ */
+
+
 .hr{
     background-color: gray;
     height: 2px;
@@ -96,9 +178,17 @@ body{
     justify-content: center;
     flex-wrap: wrap;
     transition: 1s ease;
+    height: 100%;
+    width: 100%;
 }
 .contact-container{
     gap: 40px;
+    /* flex-wrap: nowrap; */
+}
+@media screen and (max-width: 650px){
+  .contact-container{
+    flex-direction: column-reverse;
+  }
 }
 
 .skill{
@@ -180,7 +270,7 @@ footer{
 
 #button {
     position: absolute;
-    left: 425px;
+    left: 395px;
     border: none;
     /* position: relative; */
     width: 200px;
@@ -370,6 +460,66 @@ footer{
   }
 /* -------------contact social button end--------------- */
 
+/* -------------send button end--------------- */
+
+#send-btn {
+  font-family: inherit;
+  font-size: 20px;
+  background: royalblue;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+#send-btn span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+#send-btn svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+#send-btn:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+#send-btn:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+#send-btn:hover span {
+  transform: translateX(5em);
+}
+
+#send-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+/* -------------send button end--------------- */
+
+
 /* -------------resume download button start--------------- */
 .button {
     --width: 150px;
@@ -483,3 +633,89 @@ footer{
   
 /* -------------resume download button end--------------- */
 
+/* -------------offline message start------------------- */
+#offline-message {
+  display: none;
+  color: #ff0000;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100vw;
+  height: 100vh;
+  /* align-items: center; */
+  justify-content: center;
+  text-align: center;
+  padding-top: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* -------------offline message start------------------- */
+
+/* ----------------go to top button end---------------- */
+
+#go-top-btn {
+  display: inline-block;
+  background-color: #FF9800;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#go-top-btn::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#go-top-btn:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#go-top-btn:active {
+  background-color: #555;
+}
+#go-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Styles for the content section */
+
+.content {
+  width: 77%;
+  margin: 50px auto;
+  font-family: 'Merriweather', serif;
+  font-size: 17px;
+  color: #6c767a;
+  line-height: 1.9;
+}
+@media (min-width: 500px) {
+  .content {
+    width: 43%;
+  }
+  #button {
+    margin: 30px;
+  }
+}
+.content h1 {
+  margin-bottom: -10px;
+  color: #03a9f4;
+  line-height: 1.5;
+}
+.content h3 {
+  font-style: italic;
+  color: #96a2a7;
+}
+
+/* ----------------go to top button end---------------- */

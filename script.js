@@ -25,6 +25,81 @@ window.addEventListener('scroll', () => {
     
 });
 
-// ------------------------------------------------------------------------
+// ---------------------------------preloader start---------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+    // Show the preloader initially
+    var preloader = document.querySelector('.preloader-wrapper');
+    preloader.style.display = 'flex'; // Assuming 'flex' is the initial display value
+  
+    // Simulate a minimum loading time (e.g., 2000 milliseconds = 2 seconds)
+    var minimumLoadingTime = 1500;
+  
+    // Hide the preloader after the minimum loading time
+    setTimeout(function () {
+      preloader.style.display = 'none';
+    }, minimumLoadingTime);
+  });
+  
+  
+// ---------------------------------preloader end---------------------------------------
 
 
+// --------------------------------offile message start------------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to update the visibility of website content based on online status
+    function updateWebsiteVisibility() {
+        var offlineMessage = document.getElementById('offline-message');
+        var websiteContent = document.getElementById('content');
+
+        if (navigator.onLine) {
+            // Online
+            offlineMessage.style.display = 'none';
+            websiteContent.style.display = 'block';
+        } else {
+            // Offline
+            offlineMessage.style.display = 'flex';
+            websiteContent.style.display = 'none';
+        }
+    }
+
+    // Function to reload the page when online
+    function reloadPageWhenOnline() {
+        if (navigator.onLine) {
+            location.reload();
+        }
+    }
+
+    // Add event listeners for online and offline events
+    window.addEventListener('online', function() {
+        updateWebsiteVisibility();
+        reloadPageWhenOnline();
+    });
+
+    window.addEventListener('offline', updateWebsiteVisibility);
+
+    // Initial check when the page loads
+    updateWebsiteVisibility();
+});
+
+
+// --------------------------------offile message end   ------------------------------------
+
+// --------------------------------go to top button start   ------------------------------------
+
+
+var btn = $('#go-top-btn');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
+// --------------------------------go to top button end   ------------------------------------
